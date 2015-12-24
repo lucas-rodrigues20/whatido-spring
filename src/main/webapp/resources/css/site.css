@@ -4,3 +4,8 @@ body{
 	padding-top: 50px;
 	margin-bottom: 50px;
 }
+
+.erro-embutido{
+	font-size: 0.9em;
+	color: #A94442;
+}

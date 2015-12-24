@@ -1,7 +1,9 @@
 package com.whatido.conf;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -27,5 +29,16 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
+	
+	@Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+
+        messageSource.setBasename("/WEB-INF/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setCacheSeconds(1);
+
+        return messageSource;
+    }
 
 }

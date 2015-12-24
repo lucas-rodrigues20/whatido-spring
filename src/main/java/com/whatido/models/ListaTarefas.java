@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 public class ListaTarefas {
 	
@@ -12,6 +14,7 @@ public class ListaTarefas {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank
 	private String descricao;
 	
 	//getters e setters

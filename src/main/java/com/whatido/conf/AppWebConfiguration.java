@@ -8,9 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.whatido.controllers.HomeController;
+import com.whatido.daos.ListasDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class})
+@ComponentScan(basePackageClasses={HomeController.class, ListasDAO.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean

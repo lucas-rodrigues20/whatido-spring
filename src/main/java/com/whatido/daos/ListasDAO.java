@@ -1,5 +1,7 @@
 package com.whatido.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,6 +19,16 @@ public class ListasDAO {
 	
 	public void gravar(ListaTarefas listaTarefas){
 		manager.persist(listaTarefas);
+	}
+
+	public List<ListaTarefas> listar() {
+		return manager.createQuery("from ListaTarefas", ListaTarefas.class).getResultList();
+	}
+
+	public void remover(Integer listaId) {
+		ListaTarefas lista = manager.find(ListaTarefas.class, listaId);
+		manager.remove(lista);
+		manager.flush();
 	}
 	
 }

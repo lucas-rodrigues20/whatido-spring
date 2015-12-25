@@ -13,8 +13,17 @@
 	<div class="col-md-8 col-md-offset-2">
 
 		<div class="page-header">
-			<h1>Nova Lista de Tarefas</h1>
+			<h1>Suas Listas</h1>
 		</div>
+		
+		<c:if test="${!empty mensagem}">
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				${mensagem }
+			</div>
+		</c:if>
 	
 		<form:form action="${s:mvcUrl('LC#gravar').build()}" method="post" commandName="listaTarefas">
 		
@@ -31,7 +40,7 @@
 			</c:if>
 			
 			<div class="form-group">
-				<label>Descrição da Lista</label>
+				<label>Nova Lista</label>
 				<form:input path="descricao" cssClass="form-control" placeholder="Descrição da Lista" />
 				<div class="text-right">
 					<form:errors path="descricao" cssClass="erro-embutido" />
@@ -43,6 +52,38 @@
 			</div>
 			
 		</form:form>
+		
+		<div class="espacamento-listagem">
+			<table class="table table-bordered table-striped">
+				<colgroup>
+					<col class="col-md-7">
+					<col class="col-md-1">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>Descrição</th>
+						<th>Remover</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${listas}" var="lista">
+						<tr>
+							<td>${lista.descricao}</td>
+							<td>
+								<form:form action="${s:mvcUrl('LC#remover').arg(0, lista.id).build() }"
+								method="post" >
+									<div class="text-center">
+										<button type="submit" value="Remover" class="btn btn-warning btn-sm">
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+										</button>
+									</div>
+								</form:form>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 		
 	</div>
 	

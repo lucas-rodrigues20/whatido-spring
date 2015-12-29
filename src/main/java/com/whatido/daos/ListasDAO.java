@@ -31,4 +31,11 @@ public class ListasDAO {
 		manager.flush();
 	}
 	
+	public ListaTarefas listarTodasAsTarefas(Integer listaId){
+		return manager.createQuery("select l from ListaTarefas l join fetch l.tarefas t where l.id = :id",
+				ListaTarefas.class)
+				.setParameter("id", listaId)
+				.getSingleResult();
+	}
+	
 }

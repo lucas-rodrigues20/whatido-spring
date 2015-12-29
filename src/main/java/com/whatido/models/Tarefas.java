@@ -1,18 +1,15 @@
 package com.whatido.models;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class ListaTarefas {
+public class Tarefas {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,10 +18,9 @@ public class ListaTarefas {
 	@NotBlank
 	private String descricao;
 	
-	@OneToMany(mappedBy="lista", cascade=CascadeType.ALL, orphanRemoval=true)
-	private List<Tarefas> tarefas;
+	@ManyToOne
+	private ListaTarefas lista;
 	
-	//getters e setters
 	public Integer getId() {
 		return id;
 	}
@@ -32,6 +28,7 @@ public class ListaTarefas {
 		this.id = id;
 	}
 	
+	//getters e setters
 	public String getDescricao() {
 		return descricao;
 	}
@@ -39,16 +36,11 @@ public class ListaTarefas {
 		this.descricao = descricao;
 	}
 	
-	public void setTarefas(List<Tarefas> tarefas) {
-		this.tarefas = tarefas;
+	public ListaTarefas getLista() {
+		return lista;
 	}
-	public List<Tarefas> getTarefas() {
-		return tarefas;
+	public void setLista(ListaTarefas lista) {
+		this.lista = lista;
 	}
 	
-	@Override
-	public String toString() {
-		return "ListaTarefas [id=" + id + ", descricao=" + descricao + "]";
-	}
-
 }

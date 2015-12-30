@@ -52,4 +52,12 @@ public class TarefasController {
 		return new ModelAndView("redirect:/tarefas/" + lista.getId());
 	}
 	
+	@RequestMapping("/remover")
+	public ModelAndView remover(Integer id, RedirectAttributes redirectAttributes){
+		tarefasDAO.remover(id);
+		
+		redirectAttributes.addFlashAttribute("mensagem", "Tarefa removida com sucesso.");
+		return new ModelAndView("redirect:/tarefas/" + lista.getId());
+	}
+	
 }

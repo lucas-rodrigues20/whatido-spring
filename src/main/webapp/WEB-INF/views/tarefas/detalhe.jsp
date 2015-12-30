@@ -70,13 +70,14 @@
 						<tr>
 							<td>${tarefa.descricao}</td>
 							<td>
-								<!-- form remocao -->
+								<form:form action="${s:mvcUrl('TC#remover').arg(0, tarefa.id).build() }"
+									method="post" >
 									<div class="text-center">
 										<button type="submit" value="Remover" class="btn btn-warning btn-sm">
 											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 										</button>
 									</div>
-								<!-- form remocao -->
+								</form:form>
 							</td>
 						</tr>
 					</c:forEach>

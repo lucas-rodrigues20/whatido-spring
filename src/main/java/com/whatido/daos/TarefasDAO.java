@@ -19,4 +19,10 @@ public class TarefasDAO {
 		manager.merge(tarefas);
 	}
 	
+	public void remover(Integer id){
+		Tarefas tarefa = manager.find(Tarefas.class, id);
+		manager.remove(tarefa);
+		manager.flush();
+	}
+	
 }

@@ -18,7 +18,7 @@ public class ListasDAO {
 	private EntityManager manager;
 	
 	public void gravar(ListaTarefas listaTarefas){
-		manager.persist(listaTarefas);
+		manager.merge(listaTarefas);
 	}
 
 	public List<ListaTarefas> listar() {
@@ -32,10 +32,12 @@ public class ListasDAO {
 	}
 	
 	public ListaTarefas listarTodasAsTarefas(Integer listaId){
-		return manager.createQuery("select l from ListaTarefas l join fetch l.tarefas t where l.id = :id",
+		List<ListaTarefas> resultList = manager.createQuery("from ListaTarefas l left join fetch l.tarefas where l.id = :id",
 				ListaTarefas.class)
 				.setParameter("id", listaId)
-				.getSingleResult();
+				.getResultList();
+		
+		return resultList.get(0);
 	}
 	
 }

@@ -1,5 +1,6 @@
 package com.whatido.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ public class ListaTarefas {
 	private String descricao;
 	
 	@OneToMany(mappedBy="lista", cascade=CascadeType.ALL, orphanRemoval=true)
-	private List<Tarefas> tarefas;
+	private List<Tarefas> tarefas = new ArrayList<Tarefas>();
 	
 	//getters e setters
 	public Integer getId() {

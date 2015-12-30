@@ -13,7 +13,7 @@
 	<div class="col-md-8 col-md-offset-2">
 
 		<div class="page-header">
-			<h1>${lista.descricao }</h1>
+			<h1>${listaTarefas.descricao }</h1>
 		</div>
 		
 		<c:if test="${!empty mensagem}">
@@ -25,7 +25,33 @@
 			</div>
 		</c:if>
 	
-		<!-- form principal -->
+		<form:form action="${s:mvcUrl('TC#novaTarefa').build()}" method="post" commandName="tarefas">
+			
+			<c:set var="errosForm">
+				<form:errors path="*" />
+			</c:set>
+			<c:if test="${!empty errosForm }">
+				<div class="alert alert-danger alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					${errosForm }
+				</div>
+			</c:if>
+			
+			<div class="form-group">
+				<label>Nova Tarefa</label>
+				<form:input path="descricao" cssClass="form-control" placeholder="Descrição da Tarefa" />
+				<div class="text-right">
+					<form:errors path="descricao" cssClass="erro-embutido" />
+				</div>
+			</div>
+			
+			<div class="text-right">
+				<button type="submit" class="btn btn-primary">Adicionar</button>
+			</div>
+			
+		</form:form>
 		
 		<div class="espacamento-listagem">
 			<table class="table table-bordered table-striped">
@@ -40,7 +66,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${lista.tarefas}" var="tarefa">
+					<c:forEach items="${listaTarefas.tarefas}" var="tarefa">
 						<tr>
 							<td>${tarefa.descricao}</td>
 							<td>

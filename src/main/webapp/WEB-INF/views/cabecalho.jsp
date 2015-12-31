@@ -21,11 +21,8 @@
 	          		</a>
 	          	</li>
 	          	<li>
-	          		<a href="#">
-	          			<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-	          				Link 01
-					</a>
-				</li>
+	          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
+	          	</li>
         	</ul>
 		</div>
 		

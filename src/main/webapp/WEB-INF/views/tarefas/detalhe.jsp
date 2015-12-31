@@ -53,7 +53,25 @@
 			
 		</form:form>
 		
-		<div class="espacamento-listagem">
+		<hr>
+		
+		<div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+			    	<h3 class="panel-title">Última Tarefa Sorteada</h3>
+			  	</div>
+			  	<div class="panel-body">
+			  		<div class="text-center">
+			    		<p>Que tal fazer agora a tarefa: <strong class="text-info">Tarefa 01</strong></p>
+						<button type="submit" value="Remover" class="btn btn-primary btn-sm">
+							Sortear uma tarefa
+						</button>
+			    	</div>
+			  	</div>
+			</div>
+		</div>
+		
+		<div>
 			<table class="table table-bordered table-striped">
 				<colgroup>
 					<col class="col-md-7">

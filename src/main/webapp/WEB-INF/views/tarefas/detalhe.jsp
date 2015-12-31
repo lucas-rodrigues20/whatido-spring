@@ -84,6 +84,11 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:if test="${empty listaTarefas.tarefas }">
+						<tr>
+							<td colspan="2" class="text-center">Você não tem nenhuma tarefa ainda.</td>
+						</tr>
+					</c:if>
 					<c:forEach items="${listaTarefas.tarefas}" var="tarefa">
 						<tr>
 							<td>${tarefa.descricao}</td>

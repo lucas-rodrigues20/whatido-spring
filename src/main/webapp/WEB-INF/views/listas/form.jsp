@@ -66,6 +66,11 @@
 					</tr>
 				</thead>
 				<tbody>
+					<c:if test="${empty listas }">
+						<tr>
+							<td colspan="2" class="text-center">Você não tem nenhuma lista ainda.</td>
+						</tr>
+					</c:if>
 					<c:forEach items="${listas}" var="lista">
 						<tr>
 							<td>

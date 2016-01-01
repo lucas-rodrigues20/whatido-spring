@@ -18,6 +18,8 @@ public class Tarefas {
 	@NotBlank
 	private String descricao;
 	
+	private Boolean concluida = Boolean.FALSE;
+	
 	@ManyToOne
 	private ListaTarefas lista;
 	
@@ -41,6 +43,22 @@ public class Tarefas {
 	}
 	public void setLista(ListaTarefas lista) {
 		this.lista = lista;
+	}
+	
+	public Boolean getConcluida() {
+		return concluida;
+	}
+	public void setConcluida(Boolean concluida) {
+		this.concluida = concluida;
+	}
+	
+	//Métodos
+	public void inverterEstadoFinalizacao(){
+		if(this.concluida == Boolean.TRUE){
+			this.concluida = Boolean.FALSE;
+		}else{
+			this.concluida = Boolean.TRUE;
+		}
 	}
 	
 }

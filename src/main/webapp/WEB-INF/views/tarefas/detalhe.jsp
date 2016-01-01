@@ -74,11 +74,13 @@
 		<div>
 			<table class="table table-bordered table-striped">
 				<colgroup>
+					<col class="col-md-1">
 					<col class="col-md-7">
 					<col class="col-md-1">
 				</colgroup>
 				<thead>
 					<tr>
+						<th></th>
 						<th>Descrição</th>
 						<th>Remover</th>
 					</tr>
@@ -91,6 +93,17 @@
 					</c:if>
 					<c:forEach items="${listaTarefas.tarefas}" var="tarefa">
 						<tr>
+							<td>
+								<form:form action="${s:mvcUrl('TC#finalizar').arg(0, tarefa.id).build() }"
+									method="post">
+									<div class="text-center">
+										<label>
+											<input type="checkbox" value="" class="checkFinalizar"
+												<c:if test="${tarefa.concluida }">checked</c:if>>
+									    </label>
+									 </div>
+								</form:form>
+							</td>
 							<td>${tarefa.descricao}</td>
 							<td>
 								<form:form action="${s:mvcUrl('TC#remover').arg(0, tarefa.id).build() }"

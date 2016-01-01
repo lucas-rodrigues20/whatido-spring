@@ -25,4 +25,8 @@ public class TarefasDAO {
 		manager.flush();
 	}
 	
+	public Tarefas buscar(Integer id){
+		return manager.find(Tarefas.class, id);
+	}
+	
 }

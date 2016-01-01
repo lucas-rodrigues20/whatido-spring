@@ -60,4 +60,14 @@ public class TarefasController {
 		return new ModelAndView("redirect:/tarefas/" + lista.getId());
 	}
 	
+	@RequestMapping("/finalizar")
+	public ModelAndView finalizar(Integer id, RedirectAttributes redirectAttributes){
+		Tarefas tarefa = tarefasDAO.buscar(id);
+		tarefa.inverterEstadoFinalizacao();
+		tarefasDAO.gravar(tarefa);
+		
+		redirectAttributes.addFlashAttribute("mensagem", "Tarefa finalizada.");
+		return new ModelAndView("redirect:/tarefas/" + lista.getId());
+	}
+	
 }

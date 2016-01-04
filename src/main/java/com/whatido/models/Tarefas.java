@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -54,11 +55,21 @@ public class Tarefas {
 	
 	//Métodos
 	public void inverterEstadoFinalizacao(){
-		if(this.concluida == Boolean.TRUE){
+		if(isTarefaConcluida()){
 			this.concluida = Boolean.FALSE;
 		}else{
 			this.concluida = Boolean.TRUE;
 		}
+	}
+	
+	@Transient
+	public boolean isTarefaConcluida(){
+		return this.concluida.booleanValue();
+	}
+	
+	@Transient
+	public boolean isTarefaNaoConcluida(){
+		return !isTarefaConcluida();
 	}
 	
 }

@@ -62,10 +62,15 @@
 			  	</div>
 			  	<div class="panel-body">
 			  		<div class="text-center">
-			    		<p>Que tal fazer agora a tarefa: <strong class="text-info">Tarefa 01</strong></p>
-						<button type="submit" value="Remover" class="btn btn-primary btn-sm">
-							Sortear uma tarefa
-						</button>
+			  			<c:if test="${not empty listaTarefas.ultimaTarefaSorteada.descricao }">
+			    			<p>Que tal fazer agora a tarefa: <strong class="text-info">${listaTarefas.ultimaTarefaSorteada.descricao }</strong></p>
+			    		</c:if>
+			    		<form:form action="${s:mvcUrl('TC#sortear').build() }"
+									method="post">
+							<button type="submit" value="Remover" class="btn btn-primary btn-sm">
+								Sortear uma tarefa
+							</button>
+						</form:form>
 			    	</div>
 			  	</div>
 			</div>

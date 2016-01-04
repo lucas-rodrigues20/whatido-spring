@@ -70,4 +70,13 @@ public class TarefasController {
 		return new ModelAndView("redirect:/tarefas/" + lista.getId());
 	}
 	
+	@RequestMapping("/sortear")
+	public ModelAndView sortear(RedirectAttributes redirectAttributes){
+		lista.sortear();
+		listasDAO.gravar(lista);
+		
+		redirectAttributes.addFlashAttribute("mensagem", "Tarefa sorteada.");
+		return new ModelAndView("redirect:/tarefas/" + lista.getId());
+	}
+	
 }

@@ -21,6 +21,9 @@
 	          		</a>
 	          	</li>
 	          	<li>
+	          		<a href="${s:mvcUrl('UC#form').build() }">Cadastrar</a>
+	          	</li>
+	          	<li>
 	          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
 	          	</li>
         	</ul>

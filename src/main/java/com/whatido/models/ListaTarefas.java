@@ -70,17 +70,12 @@ public class ListaTarefas {
 	public void sortear(){
 		List<Tarefas> lista = new ArrayList<>(this.tarefas);
 		
+		lista.remove(this.ultimaTarefaSorteada);
 		lista = removerTarefasConcluidasDoSorteio(lista);
 		
 		if(!lista.isEmpty()){
 			Collections.shuffle(lista);
-			
-			for (Tarefas tarefas : lista) {
-				if(tarefas.getId() != this.ultimaTarefaSorteada.getId()){					
-					this.ultimaTarefaSorteada = tarefas;
-					break;
-				}
-			}
+			this.ultimaTarefaSorteada = lista.get(0);
 		}
 	}
 	

@@ -13,7 +13,7 @@ import com.whatido.controllers.HomeController;
 import com.whatido.daos.ListasDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, ListasDAO.class})
+@ComponentScan(basePackageClasses={HomeController.class, ListasDAO.class, LoginDetailsService.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean

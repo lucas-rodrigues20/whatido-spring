@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	
@@ -26,6 +27,28 @@
 	          	<li>
 	          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
 	          	</li>
+	          	<security:authorize access="!isAuthenticated()">
+	          		<li>
+	          			<a href="${s:mvcUrl('LC#loginForm').build() }">Login</a>
+	          		</li>
+	          	</security:authorize>
+	          	<security:authorize access="isAuthenticated()">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							<security:authentication property="principal" var="usuarioSpring"/>
+							Olá, ${usuarioSpring.usuario.nome } <span class="caret"></span>
+						</a>
+		             	<ul class="dropdown-menu">
+		               		<li>
+		               			<a href="#">Seus Dados</a>
+		               		</li>
+		               		<li role="separator" class="divider"></li>
+		               		<li>
+		               			<a href='<c:url value="/logout" />'>Logout</a>
+		               		</li>
+		             	</ul>
+		           	</li>
+				</security:authorize>
         	</ul>
 		</div>
 		

@@ -1,5 +1,7 @@
 package com.whatido.daos;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,6 +19,18 @@ public class UsuarioDAO {
 	
 	public void gravar(Usuario usuario){
 		manager.persist(usuario);
+	}
+	
+	public Usuario buscarPorEmail(String email){
+		List<Usuario> resultList = manager.createQuery("from Usuario u where u.email = :email", Usuario.class)
+			.setParameter("email", email)
+			.getResultList();
+		
+		if(!resultList.isEmpty()){
+			return resultList.get(0);
+		}
+		
+		return null;
 	}
 	
 }

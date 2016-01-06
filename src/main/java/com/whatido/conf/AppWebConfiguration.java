@@ -11,9 +11,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.whatido.controllers.HomeController;
 import com.whatido.daos.ListasDAO;
+import com.whatido.utils.SegurancaUtils;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, ListasDAO.class, LoginDetailsService.class})
+@ComponentScan(basePackageClasses={HomeController.class, ListasDAO.class, LoginDetailsService.class,
+		SegurancaUtils.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean

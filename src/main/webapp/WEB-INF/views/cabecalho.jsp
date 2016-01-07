@@ -21,17 +21,17 @@
 	          			Home
 	          		</a>
 	          	</li>
-	          	<li>
-	          		<a href="${s:mvcUrl('UC#form').build() }">Cadastrar</a>
-	          	</li>
-	          	<li>
-	          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
-	          	</li>
 	          	<security:authorize access="!isAuthenticated()">
+	    	      	<li>
+		          		<a href="${s:mvcUrl('UC#form').build() }">Cadastrar</a>
+		          	</li>
 	          		<li>
 	          			<a href="${s:mvcUrl('LC#loginForm').build() }">Login</a>
 	          		</li>
 	          	</security:authorize>
+	          	<li>
+	          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
+	          	</li>
 	          	<security:authorize access="isAuthenticated()">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -42,6 +42,7 @@ public class ListasController {
 			return form(listaTarefas);
 		}
 		
+		listaTarefas.setUsuario(segurancaUtils.getUsuarioLogado());
 		listasDAO.gravar(listaTarefas);
 		
 		redirectAttributes.addFlashAttribute("mensagem", "Lista cadastrada com sucesso.");

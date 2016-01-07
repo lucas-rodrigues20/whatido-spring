@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -31,6 +32,9 @@ public class ListaTarefas {
 	
 	@OneToOne(optional=true, fetch=FetchType.LAZY)
 	private Tarefas ultimaTarefaSorteada;
+	
+	@ManyToOne
+	private Usuario usuario;
 	
 	//getters e setters
 	public Integer getId() {
@@ -59,6 +63,13 @@ public class ListaTarefas {
 	}
 	public void setUltimaTarefaSorteada(Tarefas ultimaTarefaSorteada) {
 		this.ultimaTarefaSorteada = ultimaTarefaSorteada;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	//Métodos

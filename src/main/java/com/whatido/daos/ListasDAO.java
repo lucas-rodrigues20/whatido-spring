@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.whatido.models.ListaTarefas;
+import com.whatido.models.Usuario;
 
 @Repository
 @Transactional
@@ -21,8 +22,10 @@ public class ListasDAO {
 		manager.merge(listaTarefas);
 	}
 
-	public List<ListaTarefas> listar() {
-		return manager.createQuery("from ListaTarefas", ListaTarefas.class).getResultList();
+	public List<ListaTarefas> listar(Usuario usuario) {
+		return manager.createQuery("from ListaTarefas l left join fetch l.usuario where l.usuario.email = :pEmail", ListaTarefas.class)
+				.setParameter("pEmail", usuario.getEmail())
+				.getResultList();
 	}
 
 	public void remover(Integer listaId) {
@@ -32,7 +35,7 @@ public class ListasDAO {
 	}
 	
 	public ListaTarefas listarTodasAsTarefas(Integer listaId){
-		List<ListaTarefas> resultList = manager.createQuery("from ListaTarefas l left join fetch l.tarefas left join fetch l.ultimaTarefaSorteada where l.id = :id",
+		List<ListaTarefas> resultList = manager.createQuery("from ListaTarefas l left join fetch l.usuario left join fetch l.tarefas left join fetch l.ultimaTarefaSorteada where l.id = :id",
 				ListaTarefas.class)
 				.setParameter("id", listaId)
 				.getResultList();

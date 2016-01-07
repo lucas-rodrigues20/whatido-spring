@@ -30,7 +30,7 @@ public class ListasController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView form(ListaTarefas listaTarefas){
 		ModelAndView modelAndView = new ModelAndView("listas/form");
-		modelAndView.addObject("listas", listasDAO.listar());
+		modelAndView.addObject("listas", listasDAO.listar(segurancaUtils.getUsuarioLogado()));
 		
 		return modelAndView;
 	}

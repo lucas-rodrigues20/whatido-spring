@@ -17,9 +17,9 @@ import com.whatido.models.Usuario;
 import com.whatido.utils.SegurancaUtils;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("/cadastro")
 @Scope(value=WebApplicationContext.SCOPE_REQUEST)
-public class UsuarioController {
+public class CadastroController {
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -27,7 +27,7 @@ public class UsuarioController {
 	@Autowired
 	private SegurancaUtils segurancaUtils;
 	
-	@RequestMapping(value="/cadastro", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView form(Usuario usuario){
 		if(segurancaUtils.isUsuarioLogado()){			
 			return new ModelAndView("redirect:/");
@@ -36,7 +36,7 @@ public class UsuarioController {
 		}
 	}
 	
-	@RequestMapping(value="/cadastro", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView gravar(@Valid Usuario usuario, BindingResult result,
 			RedirectAttributes redirectAttributes){
 		

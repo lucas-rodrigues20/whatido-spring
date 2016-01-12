@@ -33,4 +33,8 @@ public class UsuarioDAO {
 		return null;
 	}
 	
+	public void atualizar(Usuario usuario){
+		manager.merge(usuario);
+	}
+	
 }

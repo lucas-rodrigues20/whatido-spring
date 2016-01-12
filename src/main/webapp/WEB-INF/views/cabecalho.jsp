@@ -23,7 +23,7 @@
 	          	</li>
 	          	<security:authorize access="!isAuthenticated()">
 	    	      	<li>
-		          		<a href="${s:mvcUrl('UC#form').build() }">Cadastrar</a>
+		          		<a href="${s:mvcUrl('CC#form').build() }">Cadastrar</a>
 		          	</li>
 	          		<li>
 	          			<a href="${s:mvcUrl('LC#loginForm').build() }">Login</a>

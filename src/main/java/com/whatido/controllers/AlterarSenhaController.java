@@ -1,4 +1,4 @@
-package com.whatido.conf;
+package com.whatido.controllers;
 
 import javax.validation.Valid;
 
@@ -39,7 +39,7 @@ public class AlterarSenhaController {
 	}
 	
 	@RequestMapping(value="/alterarSenha", method=RequestMethod.GET)
-	public ModelAndView formNovaSenha(NovaSenha novaSenha){
+	public ModelAndView form(NovaSenha novaSenha){
 		return new ModelAndView("usuario/alterarSenha");
 	}
 	
@@ -48,7 +48,7 @@ public class AlterarSenhaController {
 			RedirectAttributes redirectAttributes){
 		
 		if(result.hasErrors()){
-			return formNovaSenha(novaSenha);
+			return form(novaSenha);
 		}
 		
 		usuarioDAO.alterarSenha(segurancaUtils.getUsuarioLogado(), novaSenha.getNovaSenha());

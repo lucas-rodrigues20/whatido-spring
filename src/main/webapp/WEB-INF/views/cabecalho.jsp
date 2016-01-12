@@ -29,10 +29,10 @@
 	          			<a href="${s:mvcUrl('LC#loginForm').build() }">Login</a>
 	          		</li>
 	          	</security:authorize>
-	          	<li>
-	          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
-	          	</li>
 	          	<security:authorize access="isAuthenticated()">
+		          	<li>
+		          		<a href="${s:mvcUrl('LC#form').build() }">Suas Listas</a>
+		          	</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<security:authentication property="principal" var="usuarioSpring"/>
@@ -40,7 +40,8 @@
 						</a>
 		             	<ul class="dropdown-menu">
 		               		<li>
-		               			<a href="#">Seus Dados</a>
+		               			<a href="${s:mvcUrl('DC#form').build() }">Seus Dados</a>
+		               			<a href="${s:mvcUrl('ASC#form').build() }">Alterar Senha</a>
 		               		</li>
 		               		<li role="separator" class="divider"></li>
 		               		<li>

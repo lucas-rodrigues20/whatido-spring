@@ -47,9 +47,9 @@ public class DadosController {
 			return form(usuario);
 		}
 		
-		usuario.setEmail(segurancaUtils.getUsuarioLogado().getEmail());
-		usuario.setSenha(segurancaUtils.getUsuarioLogado().getSenha());
-		usuarioDAO.atualizar(usuario);
+		Usuario aux = usuarioDAO.buscarPorEmail(segurancaUtils.getUsuarioLogado().getEmail());
+		aux.setNome(usuario.getNome());
+		usuarioDAO.atualizar(aux);
 		
 		redirectAttributes.addFlashAttribute("mensagem", "Dados atualizados com sucesso.");
 		return new ModelAndView("redirect:/usuario/dados");

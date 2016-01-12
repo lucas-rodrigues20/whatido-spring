@@ -52,7 +52,7 @@ public class DadosController {
 		usuarioDAO.atualizar(usuario);
 		
 		redirectAttributes.addFlashAttribute("mensagem", "Dados atualizados com sucesso.");
-		return new ModelAndView("redirect:/dados");
+		return new ModelAndView("redirect:/usuario/dados");
 	}
 	
 }

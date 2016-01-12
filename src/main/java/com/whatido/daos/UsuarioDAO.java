@@ -37,4 +37,11 @@ public class UsuarioDAO {
 		manager.merge(usuario);
 	}
 	
+	public void alterarSenha(Usuario usuario, String senha){
+		usuario = buscarPorEmail(usuario.getEmail());
+		usuario.setSenha(senha);
+		
+		atualizar(usuario);
+	}
+	
 }

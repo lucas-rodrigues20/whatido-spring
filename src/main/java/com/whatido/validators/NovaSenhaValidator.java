@@ -8,7 +8,9 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.whatido.daos.UsuarioDAO;
 import com.whatido.models.NovaSenha;
+import com.whatido.models.Usuario;
 import com.whatido.utils.SegurancaUtils;
 
 @Component
@@ -17,6 +19,9 @@ public class NovaSenhaValidator implements Validator {
 	
 	@Autowired
 	private SegurancaUtils segurancaUtils;
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -29,7 +34,9 @@ public class NovaSenhaValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "novaSenha", "field.required.novaSenha.novaSenha");
 		
 		NovaSenha novaSenha = (NovaSenha) target;
-		if(!segurancaUtils.getUsuarioLogado().getSenha().equals(novaSenha.getSenhaAtual())){
+		Usuario usuario = usuarioDAO.buscarPorEmail(segurancaUtils.getUsuarioLogado().getEmail());
+		
+		if(!usuario.getSenha().equals(novaSenha.getSenhaAtual())){
 			errors.rejectValue("senhaAtual", "novaSenha.senhaAtual.incorreta");
 		}
 		

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.whatido.daos.UsuarioDAO;
 import com.whatido.models.Usuario;
 import com.whatido.utils.SegurancaUtils;
+import com.whatido.validators.UsuarioValidator;
 
 @Controller
 @RequestMapping("/cadastro")
@@ -26,6 +29,14 @@ public class CadastroController {
 	
 	@Autowired
 	private SegurancaUtils segurancaUtils;
+	
+	@Autowired
+	private UsuarioValidator usuarioValidator;
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+		binder.addValidators(usuarioValidator);
+	}
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView form(Usuario usuario){

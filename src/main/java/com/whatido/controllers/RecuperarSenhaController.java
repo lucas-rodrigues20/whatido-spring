@@ -1,5 +1,7 @@
 package com.whatido.controllers;
 
+import java.util.concurrent.Callable;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,12 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.whatido.daos.UsuarioDAO;
 import com.whatido.models.RecuperarSenha;
+import com.whatido.models.Usuario;
+import com.whatido.utils.EnviadorEmail;
 import com.whatido.utils.SegurancaUtils;
+import com.whatido.utils.TipoEmail;
 import com.whatido.validators.RecuperarSenhaValidator;
 
 @Controller
@@ -28,6 +34,12 @@ public class RecuperarSenhaController {
 	
 	@Autowired
 	private RecuperarSenhaValidator recuperarSenhaValidator;
+	
+	@Autowired
+	private EnviadorEmail enviadorEmail;
+	
+	@Autowired
+	private UsuarioDAO usuarioDAO;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
@@ -44,15 +56,26 @@ public class RecuperarSenhaController {
 	}
 	
 	@RequestMapping(value="/recuperarSenha", method=RequestMethod.POST)
-	public ModelAndView recuperarSenha(@Valid RecuperarSenha recuperarSenha, BindingResult result,
-			RedirectAttributes redirectAttributes){
+	public Callable<ModelAndView> recuperarSenha(@Valid final RecuperarSenha recuperarSenha, final BindingResult result,
+			final RedirectAttributes redirectAttributes){
 		
-		if(result.hasErrors()){
-			return form(recuperarSenha);
-		}
+		return new Callable<ModelAndView>() {
+
+			@Override
+			public ModelAndView call() throws Exception {
 		
-		redirectAttributes.addFlashAttribute("mensagem", "Seus dados de acesso foram enviados para seu email.");
-		return new ModelAndView("redirect:/usuario/recuperarSenha");
+				if(result.hasErrors()){
+					return form(recuperarSenha);
+				}
+				
+				Usuario usuario = usuarioDAO.buscarPorEmail(recuperarSenha.getEmail());
+				enviadorEmail.enviarEmailUsuario(usuario, "Dados Recuperados", TipoEmail.RECUPERARSENHA);
+				
+				redirectAttributes.addFlashAttribute("mensagem", "Seus dados de acesso foram enviados para seu email.");
+				return new ModelAndView("redirect:/usuario/recuperarSenha");
+				
+			}
+		};
 	}
 	
 }

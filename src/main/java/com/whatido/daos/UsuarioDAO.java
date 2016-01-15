@@ -33,15 +33,15 @@ public class UsuarioDAO {
 		return null;
 	}
 	
-	public void atualizar(Usuario usuario){
-		manager.merge(usuario);
+	public Usuario atualizar(Usuario usuario){
+		return manager.merge(usuario);
 	}
 	
-	public void alterarSenha(Usuario usuario, String senha){
+	public Usuario alterarSenha(Usuario usuario, String senha){
 		usuario = buscarPorEmail(usuario.getEmail());
 		usuario.setSenha(senha);
 		
-		atualizar(usuario);
+		return atualizar(usuario);
 	}
 	
 }

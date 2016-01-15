@@ -1,8 +1,13 @@
 package com.whatido.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class NovaSenha {
 	
+	@NotBlank
 	private String senhaAtual;
+	
+	@NotBlank
 	private String novaSenha;
 	
 	public String getSenhaAtual() {

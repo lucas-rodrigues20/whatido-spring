@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -30,16 +29,14 @@ public class NovaSenhaValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "senhaAtual", "field.required.novaSenha.senhaAtual");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "novaSenha", "field.required.novaSenha.novaSenha");
-		
-		NovaSenha novaSenha = (NovaSenha) target;
-		Usuario usuario = usuarioDAO.buscarPorEmail(segurancaUtils.getUsuarioLogado().getEmail());
-		
-		if(!usuario.getSenha().equals(novaSenha.getSenhaAtual())){
-			errors.rejectValue("senhaAtual", "novaSenha.senhaAtual.incorreta");
+		if(!errors.hasErrors()){
+			NovaSenha novaSenha = (NovaSenha) target;
+			Usuario usuario = usuarioDAO.buscarPorEmail(segurancaUtils.getUsuarioLogado().getEmail());
+			
+			if(!usuario.getSenha().equals(novaSenha.getSenhaAtual())){
+				errors.rejectValue("senhaAtual", "novaSenha.senhaAtual.incorreta");
+			}
 		}
-		
 	}
 
 }

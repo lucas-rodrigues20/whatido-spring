@@ -1,8 +1,8 @@
 @CHARSET "UTF-8";
 
 body{
-	padding-top: 60px;
-	margin-bottom: 50px;
+	/*padding-top: 60px;
+	margin-bottom: 50px;*/
 }
 
 .erro-embutido{
@@ -11,5 +11,9 @@ body{
 }
 
 .espacamento-listagem{
+	padding-top: 40px;
+}
+
+.footer{
 	padding-top: 40px;
 }

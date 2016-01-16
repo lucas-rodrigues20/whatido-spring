@@ -1,7 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse">
 	
     <div class="container">
     	
@@ -20,6 +20,9 @@
 	          		<a href="${s:mvcUrl('HC#index').build() }">
 	          			Home
 	          		</a>
+	          	</li>
+	          	<li>
+	          		<a href="${s:mvcUrl('MCC#form').build() }">Contato</a>
 	          	</li>
 	          	<security:authorize access="!isAuthenticated()">
 	    	      	<li>

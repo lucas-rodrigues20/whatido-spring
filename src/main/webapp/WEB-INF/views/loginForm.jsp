@@ -3,7 +3,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="template" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<template:mainTemplate titulo="Home">
+<template:mainTemplate titulo="Login">
 
 <!-- CORPO -->
 <div class="container">

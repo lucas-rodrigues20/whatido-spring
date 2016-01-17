@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="template" %>
 
-<template:mainTemplate titulo="Nova Lista">
+<template:mainTemplate titulo="Cadastro">
 
 <!-- CORPO -->
 <div class="container">

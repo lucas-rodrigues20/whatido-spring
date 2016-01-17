@@ -54,6 +54,9 @@
 				<label class="col-sm-2 control-label">Nome</label>
 				<div class="col-sm-10">
 					<form:input path="nome" cssClass="form-control" placeholder="Seu nome" />
+					<div class="text-right">
+						<form:errors path="nome" cssClass="erro-embutido" />
+					</div>
 				</div>
 			</div>
 			

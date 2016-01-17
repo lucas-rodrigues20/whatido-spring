@@ -44,21 +44,33 @@
 			<div class="form-group">
 				<label>Nome</label>
 				<form:input path="nome" cssClass="form-control" placeholder="Seu nome" />
+				<div class="text-right">
+					<form:errors path="nome" cssClass="erro-embutido" />
+				</div>
 			</div>
 			
 			<div class="form-group">
 				<label>Email</label>
 				<form:input path="email" cssClass="form-control" placeholder="seuemail@exemplo.com" />
+				<div class="text-right">
+					<form:errors path="email" cssClass="erro-embutido" />
+				</div>
 			</div>
 			
 			<div class="form-group">
 				<label>Assunto</label>
 				<form:input path="assunto" cssClass="form-control" placeholder="Motivo do contato" />
+				<div class="text-right">
+					<form:errors path="assunto" cssClass="erro-embutido" />
+				</div>
 			</div>
 			
 			<div class="form-group">
 				<label>Email</label>
 				<form:textarea path="mensagem" cssClass="form-control" placeholder="Sua mensagem" />
+				<div class="text-right">
+					<form:errors path="mensagem" cssClass="erro-embutido" />
+				</div>
 			</div>
 			
 			<div class="text-right">

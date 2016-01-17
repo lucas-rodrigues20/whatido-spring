@@ -45,6 +45,9 @@
 				<label class="col-sm-2 control-label">Email Cadastrado</label>
 				<div class="col-sm-10">
 					<form:input path="email" cssClass="form-control" placeholder="email@exemplo.com" />
+					<div class="text-right">
+						<form:errors path="email" cssClass="erro-embutido" />
+					</div>
 				</div>
 			</div>
 			

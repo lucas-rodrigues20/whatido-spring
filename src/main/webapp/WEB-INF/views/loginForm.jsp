@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="template" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 
 <template:mainTemplate titulo="Login">
 
 <!-- CORPO -->
 <div class="container">
 	
-	<div class="col-md-6 col-md-offset-3">
+	<div class="col-md-4 col-md-offset-4">
 
 		<div class="page-header">
 			<h1>Login</h1>
@@ -27,10 +28,14 @@
 			</div>
 			
 			<div class="text-right">
-				<button type="submit" class="btn btn-primary">Login</button>
+				<button type="submit" class="btn btn-primary btn-block">Login</button>
 			</div>
 			
 		</form:form>
+		
+		<a href="${s:mvcUrl('CC#form').build() }" class="pull-left">Cadastrar-se</a>
+		<a href="${s:mvcUrl('RSC#form').build() }" class="pull-right">Esqueci Minha Senha</a>
+		
 	</div>
 	
 </div>

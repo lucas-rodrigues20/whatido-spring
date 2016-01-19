@@ -27,7 +27,8 @@
 			</div>
 		</c:if>
 
-		<form:form action="${s:mvcUrl('MCC#enviar').build()}" method="post" commandName="contato">
+		<form:form action="${s:mvcUrl('MCC#enviar').build()}" method="post" commandName="contato"
+			htmlEscape="true">
 		
 			<c:set var="errosForm">
 				<form:errors path="*" />

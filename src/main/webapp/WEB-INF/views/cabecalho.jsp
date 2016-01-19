@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <nav class="navbar navbar-inverse">
 	
@@ -39,7 +40,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							<security:authentication property="principal" var="usuarioSpring"/>
-							Olá, ${usuarioSpring.usuario.nome } <span class="caret"></span>
+							Olá, <c:out value="${usuarioSpring.usuario.nome }" /> <span class="caret"></span>
 						</a>
 		             	<ul class="dropdown-menu">
 		               		<li>

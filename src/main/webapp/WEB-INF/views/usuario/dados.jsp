@@ -27,7 +27,7 @@
 		</c:if>
 
 		<form:form action="${s:mvcUrl('DC#gravar').build()}" method="post" commandName="usuario"
-			cssClass="form-horizontal">
+			cssClass="form-horizontal" htmlEscape="true">
 		
 			<c:set var="errosForm">
 				<form:errors path="*" />

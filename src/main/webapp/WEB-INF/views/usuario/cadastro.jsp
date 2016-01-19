@@ -25,7 +25,8 @@
 			</div>
 		</c:if>
 	
-		<form:form action="${s:mvcUrl('CC#gravar').build()}" method="post" commandName="usuario">
+		<form:form action="${s:mvcUrl('CC#gravar').build()}" method="post" commandName="usuario"
+			htmlEscape="true">
 		
 			<c:set var="errosForm">
 				<form:errors path="*" />

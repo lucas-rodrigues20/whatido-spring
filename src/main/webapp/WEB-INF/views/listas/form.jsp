@@ -25,7 +25,8 @@
 			</div>
 		</c:if>
 	
-		<form:form action="${s:mvcUrl('LC#gravar').build()}" method="post" commandName="listaTarefas">
+		<form:form action="${s:mvcUrl('LC#gravar').build()}" method="post" commandName="listaTarefas"
+			htmlEscape="true">
 		
 			<c:set var="errosForm">
 				<form:errors path="*" />
@@ -75,7 +76,8 @@
 						<tr>
 							<td>
 								<a href="${s:mvcUrl('TC#tarefas').arg(0, lista.id).build() }">
-									${lista.descricao}</a>
+									<c:out value="${lista.descricao}" />
+								</a>
 							</td>
 							<td>
 								<form:form action="${s:mvcUrl('LC#remover').arg(0, lista.id).build() }"

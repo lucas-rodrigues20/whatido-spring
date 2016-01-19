@@ -27,7 +27,7 @@
 		</c:if>
 
 		<form:form action="${s:mvcUrl('ASC#alterarSenha').build()}" method="post" commandName="novaSenha"
-			cssClass="form-horizontal">
+			cssClass="form-horizontal" htmlEscape="true">
 		
 			<c:set var="errosForm">
 				<form:errors path="*" />

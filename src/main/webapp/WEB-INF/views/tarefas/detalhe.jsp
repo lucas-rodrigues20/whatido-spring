@@ -13,7 +13,9 @@
 	<div class="col-md-8 col-md-offset-2">
 
 		<div class="page-header">
-			<h1>${listaTarefas.descricao }</h1>
+			<h1>
+				<c:out value="${listaTarefas.descricao }" />
+			</h1>
 		</div>
 		
 		<c:if test="${!empty mensagem}">
@@ -25,7 +27,8 @@
 			</div>
 		</c:if>
 	
-		<form:form action="${s:mvcUrl('TC#novaTarefa').build()}" method="post" commandName="tarefas">
+		<form:form action="${s:mvcUrl('TC#novaTarefa').build()}" method="post" commandName="tarefas"
+			htmlEscape="true">
 			
 			<c:set var="errosForm">
 				<form:errors path="*" />
@@ -63,7 +66,7 @@
 			  	<div class="panel-body">
 			  		<div class="text-center">
 			  			<c:if test="${not empty listaTarefas.ultimaTarefaSorteada.descricao }">
-			    			<p>Que tal fazer agora a tarefa: <strong class="text-info">${listaTarefas.ultimaTarefaSorteada.descricao }</strong></p>
+			    			<p>Que tal fazer agora a tarefa: <strong class="text-info"><c:out value="${listaTarefas.ultimaTarefaSorteada.descricao }"/></strong></p>
 			    		</c:if>
 			    		<form:form action="${s:mvcUrl('TC#sortear').build() }"
 									method="post">
@@ -109,7 +112,9 @@
 									 </div>
 								</form:form>
 							</td>
-							<td>${tarefa.descricao}</td>
+							<td>
+								<c:out value="${tarefa.descricao}"/>
+							</td>
 							<td>
 								<form:form action="${s:mvcUrl('TC#remover').arg(0, tarefa.id).build() }"
 									method="post" >

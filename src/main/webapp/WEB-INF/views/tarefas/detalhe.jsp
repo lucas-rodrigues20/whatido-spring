@@ -66,11 +66,17 @@
 			  	<div class="panel-body">
 			  		<div class="text-center">
 			  			<c:if test="${not empty listaTarefas.ultimaTarefaSorteada.descricao }">
-			    			<p>Que tal fazer agora a tarefa: <strong class="text-info"><c:out value="${listaTarefas.ultimaTarefaSorteada.descricao }"/></strong></p>
+			    			<p>Que tal fazer agora a tarefa: 
+				    			<strong class="text-info">
+				    				<c:out value="${listaTarefas.ultimaTarefaSorteada.descricao }"/>
+				    			</strong>
+				    		</p>
 			    		</c:if>
+			    		
 			    		<form:form action="${s:mvcUrl('TC#sortear').build() }"
 									method="post">
-							<button type="submit" value="Remover" class="btn btn-primary btn-sm">
+							<button type="submit" value="Remover" class="btn btn-primary btn-sm"
+								<c:if test="${empty listaTarefas.tarefas }">disabled</c:if>>
 								Sortear uma tarefa
 							</button>
 						</form:form>

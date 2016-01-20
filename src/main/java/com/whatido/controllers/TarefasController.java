@@ -41,7 +41,7 @@ public class TarefasController {
 		
 		lista = listasDAO.listarTodasAsTarefas(id);
 		
-		if(lista.isListaPertencenteAoUsuarioLogado(segurancaUtils.getUsuarioLogado())){
+		if(lista != null && lista.isListaPertencenteAoUsuarioLogado(segurancaUtils.getUsuarioLogado())){
 			modelAndView.addObject("listaTarefas", lista);
 			return modelAndView;
 		}else{

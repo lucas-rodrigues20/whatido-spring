@@ -40,7 +40,11 @@ public class ListasDAO {
 				.setParameter("id", listaId)
 				.getResultList();
 		
-		return resultList.get(0);
+		if(!resultList.isEmpty()){			
+			return resultList.get(0);
+		}
+		
+		return null;
 	}
 	
 }

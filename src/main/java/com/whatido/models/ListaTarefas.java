@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -100,6 +101,11 @@ public class ListaTarefas {
 		}
 		
 		return lista;
+	}
+	
+	@Transient
+	public boolean isListaPertencenteAoUsuarioLogado(Usuario usuarioLogado){
+		return this.usuario.getEmail().equals(usuarioLogado.getEmail());
 	}
 
 }

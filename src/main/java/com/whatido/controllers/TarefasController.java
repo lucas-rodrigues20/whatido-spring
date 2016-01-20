@@ -17,6 +17,7 @@ import com.whatido.daos.ListasDAO;
 import com.whatido.daos.TarefasDAO;
 import com.whatido.models.ListaTarefas;
 import com.whatido.models.Tarefas;
+import com.whatido.utils.SegurancaUtils;
 
 @Controller
 @RequestMapping("/tarefas")
@@ -29,6 +30,9 @@ public class TarefasController {
 	@Autowired
 	private TarefasDAO tarefasDAO;
 	
+	@Autowired
+	private SegurancaUtils segurancaUtils;
+	
 	private ListaTarefas lista;
 	
 	@RequestMapping("/{id}")
@@ -36,9 +40,14 @@ public class TarefasController {
 		ModelAndView modelAndView = new ModelAndView("/tarefas/detalhe");
 		
 		lista = listasDAO.listarTodasAsTarefas(id);
-		modelAndView.addObject("listaTarefas", lista);
 		
-		return modelAndView;
+		if(lista.isListaPertencenteAoUsuarioLogado(segurancaUtils.getUsuarioLogado())){
+			modelAndView.addObject("listaTarefas", lista);
+			return modelAndView;
+		}else{
+			return new ModelAndView("redirect:/listas");
+		}
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

@@ -10,7 +10,7 @@
 <!-- CORPO -->
 <div class="container">
 
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-8 col-md-offset-2 conteudo">
 
 		<div class="page-header">
 			<h1>Alterar Senha</h1>

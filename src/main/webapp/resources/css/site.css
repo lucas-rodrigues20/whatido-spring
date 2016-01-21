@@ -6,6 +6,10 @@ body{
 	font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.conteudo {
+	min-height: 450px;
+}
+
 .erro-embutido{
 	font-size: 0.9em;
 	color: #A94442;
@@ -15,8 +19,27 @@ body{
 	padding-top: 40px;
 }
 
-.footer{
-	padding-top: 40px;
+footer {
+	margin-top: 50px;
+	background-color: #1D1B1B;
+    padding: 30px 0;
+}
+
+footer h4 {
+	color: #777;
+}
+
+footer hr {
+	max-width: 100px;
+	border-color: #777;
+}
+
+a i{
+    color: #FFF;
+}
+
+a i:hover{
+    color: #575454;
 }
 
 /* Remoção do Arredondamento Padrão do Bootstrap */

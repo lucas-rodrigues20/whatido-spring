@@ -10,7 +10,7 @@
 <!-- CORPO -->
 <div class="container">
 
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1 conteudo">
 
 		<div class="page-header">
 			<h1>Recuperar Senha</h1>

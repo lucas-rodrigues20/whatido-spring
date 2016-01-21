@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="${resourcesPath }/css/site.css">
 	
 	<!-- Custom Fonts -->
-    <link href="${resourcesPath }/css/stylish-portfolio.css" rel="stylesheet">
+	<link href="${resourcesPath }/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

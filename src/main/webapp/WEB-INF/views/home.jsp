@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +50,12 @@
             <h1>What I Do?!</h1>
             <h3>Você tem várias coisas para fazer e não sabe por onde começar?</h3>
             <br>
-            <a href="${s:mvcUrl('CC#form').build() }" class="btn btn-dark btn-lg">Cadastre-se</a>
+            <security:authorize access="!isAuthenticated()">
+            	<a href="${s:mvcUrl('CC#form').build() }" class="btn btn-dark btn-lg">Cadastre-se</a>
+            </security:authorize>
+            <security:authorize access="isAuthenticated()">
+            	<a href="${s:mvcUrl('LC#form').build() }" class="btn btn-dark btn-lg">Suas Listas</a>
+            </security:authorize>
             <a href="#about" class="btn btn-dark btn-lg">Saiba Mais</a>
         </div>
     </header>

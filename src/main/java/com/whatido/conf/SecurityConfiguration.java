@@ -23,7 +23,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/resources/**").permitAll()
 			.antMatchers("/**").permitAll()
 			.anyRequest().authenticated()
-			.and().formLogin().loginPage("/login").permitAll()
+			.and().formLogin().loginPage("/login").failureUrl("/login?error=true").permitAll()
 			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
 	}
 	

@@ -3,6 +3,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="template" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <template:mainTemplate titulo="Login">
 
@@ -16,15 +17,24 @@
 		</div>
 	
 		<form:form servletRelativeAction="/login" method="post">
+		
+			<c:if test="${param.error == 'true'}">
+				<div class="alert alert-danger alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					Email ou Senha Inválido
+				</div>
+			</c:if>
 			
 			<div class="form-group">
 				<label>Email</label>
-				<input type="text" name="username" class="form-control" placeholder="Email" />
+				<input type="email" name="username" class="form-control" placeholder="Email" required />
 			</div>
 			
 			<div class="form-group">
 				<label>Senha</label>
-				<input type="password" name="password" class="form-control" placeholder="Senha" />
+				<input type="password" name="password" class="form-control" placeholder="Senha" required />
 			</div>
 			
 			<div class="text-right">

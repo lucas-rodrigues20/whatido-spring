@@ -20,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/tarefas/**").hasAnyRole("ADMIN", "USER")
 			.antMatchers("/usuario/recuperarSenha").permitAll()
 			.antMatchers("/usuario/**").hasAnyRole("ADMIN", "USER")
+			.antMatchers("/usuarios/**").hasAnyRole("ADMIN")
 			.antMatchers("/resources/**").permitAll()
 			.antMatchers("/**").permitAll()
 			.anyRequest().authenticated()

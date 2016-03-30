@@ -13,6 +13,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -58,16 +59,16 @@ public class UsuarioDAO {
 	public List<Object[]> buscaFiltrada(FiltroUsuario filtro){
 		Session session = manager.unwrap(Session.class);
 		
-		Criteria criteria = session.createCriteria(Usuario.class)
-				.createAlias("listaTarefas", "l");
+		Criteria criteria = session.createCriteria(Usuario.class);
+		criteria.createAlias("listaTarefas", "l", JoinType.LEFT_OUTER_JOIN);		
 		
 		ProjectionList colunasNecessarias = Projections.projectionList();
 		colunasNecessarias.add(Projections.property("nome"));
 		colunasNecessarias.add(Projections.property("email"));
 		colunasNecessarias.add(Projections.property("permissao"));
-		colunasNecessarias.add(Projections.count("listaTarefas"));
+		colunasNecessarias.add(Projections.count("l.usuario"));
 		
-		colunasNecessarias.add(Projections.groupProperty("email"));
+		colunasNecessarias.add(Projections.groupProperty("l.usuario.email"));
 		
 		criteria.setProjection(colunasNecessarias);
 		
@@ -82,9 +83,10 @@ public class UsuarioDAO {
 			criteria.add(Restrictions.eq("permissao", filtro.getPermissao()));
 		}
 		
-		criteria.addOrder(Order.desc("nome"));
+		criteria.addOrder(Order.asc("nome"));
 		
 		return criteria.list();
 		
 	}
+
 }

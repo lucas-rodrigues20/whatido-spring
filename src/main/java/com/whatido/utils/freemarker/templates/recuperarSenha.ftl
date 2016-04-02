@@ -1,8 +1,89 @@
+<!DOCTYPE html>
 <html>
-    <body>
-    	<h2>Seu senha foi recuperada.</h2>
-        <p>Olá ${parametro.nome}, seus dados de acesso foram recuperados:</p>
-        <p>Login: ${parametro.email}<br/>Senha:${parametro.senha}</p>
-        <p>Acesse: <a href="www.google.com">agora</a></p>
+	<head>
+
+		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+        <style type="text/css">
+            body {
+                font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+            }
+            table{
+                margin: auto;
+            }
+            table thead tr td{
+                background-color: #DEDEDE;
+            }
+            .text-center{
+                text-align: center;
+            }
+            .tabela-externa{
+                border: 1px solid #AAA;
+            }
+            .text-primary {
+              color: #337ab7;
+            }
+            a {
+              color: #02457e;
+              text-decoration: none;
+            }
+            a:hover{
+                color: #000;
+            }
+        </style>
+
+	</head>
+    <body style="font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+
+        <table class="tabela-externa" cellspacing="10" style="margin: auto; border: 1px solid #AAA; text-align: center;">
+        	<thead>
+        		<tr class="text-center">
+        			<td style="background-color: #DEDEDE;">
+        				<h1>What I Do?!</h1>
+        			</td>
+        		</tr>
+        	</thead>
+        	<tbody class="text-center">
+        		<tr>
+        			<td>
+        				<strong>Sua Senha Foi Recuperada!</strong>
+        			</td>
+        		</tr>
+        		<tr>
+        			<td>
+        				Olá <span class="text-primary" style="color: #337ab7;">${parametro.nome}</span>, seus dados de acesso foram recuperados:
+        			</td>
+        		</tr>
+        		<tr>
+        			<td class="text-center">
+        				<table style="margin: auto;">
+        					<thead>
+        						<tr>
+        							<td colspan="2" style="background-color: #DEDEDE;">
+        								<strong>Seus Dados de Acesso</strong>
+        							</td>
+        						</tr>
+        					</thead>
+        					<tbody>
+        						<tr>
+				        			<td>Login:</td>
+				        			<td class="text-primary" style="color: #337ab7;">${parametro.email}</td>
+				        		</tr>
+				        		<tr>
+				        			<td>Senha:</td>
+				        			<td class="text-primary" style="color: #337ab7;">${parametro.senha}</td>
+				        		</tr>
+        					</tbody>
+        				</table>
+        			</td>
+        		</tr>
+        		<tr>
+        			<td>
+        				Acesse: <a href="http://app.whatido.tk" style="color: #02457e; text-decoration: none;">WhatIDo?!</a>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+
     </body>
 </html>

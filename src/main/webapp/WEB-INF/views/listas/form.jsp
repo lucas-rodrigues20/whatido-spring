@@ -75,7 +75,7 @@
 					<c:forEach items="${listas}" var="lista">
 						<tr>
 							<td>
-								<a href="${s:mvcUrl('TC#tarefas').arg(0, lista.id).build() }">
+								<a href="<c:url value='/tarefas/${lista.id }' />">
 									<c:out value="${lista.descricao}" />
 								</a>
 							</td>

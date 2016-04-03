@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,12 +37,14 @@ public class TarefasController {
 	private ListaTarefas lista;
 	
 	@RequestMapping("/{id}")
-	public ModelAndView tarefas(@PathVariable("id") Integer id, Tarefas tarefas){
+	public ModelAndView tarefas(@PathVariable("id") Integer id, Tarefas tarefas, 
+			@RequestParam(required=false, defaultValue="false") boolean finalizada){
 		ModelAndView modelAndView = new ModelAndView("/tarefas/detalhe");
 		
 		lista = listasDAO.listarTodasAsTarefas(id);
 		
 		if(lista != null && lista.isListaPertencenteAoUsuarioLogado(segurancaUtils.getUsuarioLogado())){
+			lista.setTarefas(lista.filtrarTarefasPeloEstadoDeFinalizacao(finalizada));
 			modelAndView.addObject("listaTarefas", lista);
 			return modelAndView;
 		}else{
@@ -54,7 +57,7 @@ public class TarefasController {
 	public ModelAndView novaTarefa(@Valid Tarefas tarefas, BindingResult result,
 			RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
-			return tarefas(lista.getId(), tarefas);
+			return tarefas(lista.getId(), tarefas, false);
 		}
 		
 		tarefas.setLista(lista);

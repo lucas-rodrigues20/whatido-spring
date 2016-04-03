@@ -86,6 +86,17 @@
 		</div>
 		
 		<div>
+			<!-- NAVEGACAO FINALIZADA/NAO FINALIZADA-->
+			<ul class="nav nav-tabs nav-justified" role="tablist">
+			    <li role="presentation" <c:if test="${param.finalizada != 'true'}">class="active"</c:if>>
+			        <a href="<c:url value='/tarefas/${listaTarefas.id }' />">Tarefas Não Finalizadas</a>
+			    </li>
+			    <li role="presentation" <c:if test="${param.finalizada == 'true'}">class="active"</c:if>>
+			        <a href="<c:url value='/tarefas/${listaTarefas.id }?finalizada=true' />">Tarefas Finalizadas</a>
+			    </li>
+			</ul>
+			<!-- NAVEGACAO FINALIZADA/NAO FINALIZADA-->
+		
 			<table class="table table-bordered table-striped">
 				<colgroup>
 					<col class="col-md-1">

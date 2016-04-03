@@ -18,6 +18,10 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+
 @Entity
 public class ListaTarefas {
 	
@@ -106,6 +110,19 @@ public class ListaTarefas {
 	@Transient
 	public boolean isListaPertencenteAoUsuarioLogado(Usuario usuarioLogado){
 		return this.usuario.getEmail().equals(usuarioLogado.getEmail());
+	}
+	
+	public ArrayList<Tarefas> filtrarTarefasPeloEstadoDeFinalizacao(final boolean finalizada){
+		Iterable<Tarefas> listaFiltrada = Iterables.filter(this.getTarefas(), new Predicate<Tarefas>() {
+
+			@Override
+			public boolean apply(Tarefas t) {
+				return t.getConcluida().equals(finalizada);
+			}
+			
+		});
+		
+		return Lists.newArrayList(listaFiltrada);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.whatido.controllers;
 
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,15 +38,18 @@ public class TarefasController {
 	private ListaTarefas lista;
 	
 	@RequestMapping("/{id}")
-	public ModelAndView tarefas(@PathVariable("id") Integer id, Tarefas tarefas, 
-			@RequestParam(required=false, defaultValue="false") boolean finalizada){
+	public ModelAndView tarefas(@PathVariable("id") Integer id, Tarefas tarefas){
 		ModelAndView modelAndView = new ModelAndView("/tarefas/detalhe");
 		
 		lista = listasDAO.listarTodasAsTarefas(id);
 		
 		if(lista != null && lista.isListaPertencenteAoUsuarioLogado(segurancaUtils.getUsuarioLogado())){
-			lista.setTarefas(lista.filtrarTarefasPeloEstadoDeFinalizacao(finalizada));
+			ArrayList<Tarefas> tarefasFinalizadas = lista.filtrarTarefasPeloEstadoDeFinalizacao(true);
+			ArrayList<Tarefas> tarefasNaoFinalizadas = lista.filtrarTarefasPeloEstadoDeFinalizacao(false);
+			
 			modelAndView.addObject("listaTarefas", lista);
+			modelAndView.addObject("tarefasFinalizadas", tarefasFinalizadas);
+			modelAndView.addObject("tarefasNaoFinalizadas", tarefasNaoFinalizadas);
 			return modelAndView;
 		}else{
 			return new ModelAndView("redirect:/listas");
@@ -57,7 +61,7 @@ public class TarefasController {
 	public ModelAndView novaTarefa(@Valid Tarefas tarefas, BindingResult result,
 			RedirectAttributes redirectAttributes){
 		if(result.hasErrors()){
-			return tarefas(lista.getId(), tarefas, false);
+			return tarefas(lista.getId(), tarefas);
 		}
 		
 		tarefas.setLista(lista);
@@ -69,6 +73,10 @@ public class TarefasController {
 	
 	@RequestMapping("/remover")
 	public ModelAndView remover(Integer id, RedirectAttributes redirectAttributes){
+		if(lista.getUltimaTarefaSorteada().getId() == id){
+			lista.setUltimaTarefaSorteada(null);
+			listasDAO.gravar(lista);
+		}
 		tarefasDAO.remover(id);
 		
 		redirectAttributes.addFlashAttribute("mensagem", "Tarefa removida com sucesso.");

@@ -76,7 +76,7 @@
 			    		<form:form action="${s:mvcUrl('TC#sortear').build() }"
 									method="post">
 							<button type="submit" value="Remover" class="btn btn-primary btn-sm"
-								<c:if test="${empty listaTarefas.tarefas }">disabled</c:if>>
+								<c:if test="${empty tarefasNaoFinalizadas }">disabled</c:if>>
 								Sortear uma tarefa
 							</button>
 						</form:form>
@@ -85,67 +85,126 @@
 			</div>
 		</div>
 		
-		<div>
+		<div class="tab-content">
 			<!-- NAVEGACAO FINALIZADA/NAO FINALIZADA-->
 			<ul class="nav nav-tabs nav-justified" role="tablist">
-			    <li role="presentation" <c:if test="${param.finalizada != 'true'}">class="active"</c:if>>
-			        <a href="<c:url value='/tarefas/${listaTarefas.id }' />">Tarefas Não Finalizadas</a>
+			    <li role="presentation" class="active">
+			        <a href="#nao-finalizadas" id="exibir-nao-finalizadas" role="tab" data-toggle="tab">Tarefas Não Finalizadas</a>
 			    </li>
-			    <li role="presentation" <c:if test="${param.finalizada == 'true'}">class="active"</c:if>>
-			        <a href="<c:url value='/tarefas/${listaTarefas.id }?finalizada=true' />">Tarefas Finalizadas</a>
+			    <li role="presentation">
+			        <a href="#finalizadas" id="exibir-finalizadas" role="tab" data-toggle="tab">Tarefas Finalizadas</a>
 			    </li>
 			</ul>
 			<!-- NAVEGACAO FINALIZADA/NAO FINALIZADA-->
 		
-			<table class="table table-bordered table-striped">
-				<colgroup>
-					<col class="col-md-1">
-					<col class="col-md-7">
-					<col class="col-md-1">
-				</colgroup>
-				<thead>
-					<tr>
-						<th></th>
-						<th>Descrição</th>
-						<th>Remover</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:if test="${empty listaTarefas.tarefas }">
+			<!-- NAO FINALIZADAS -->
+			<div role="tabpanel" class="tab-pane fade in active" id="nao-finalizadas">
+				<table class="table table-bordered table-striped">
+					<colgroup>
+						<col class="col-md-1">
+						<col class="col-md-7">
+						<col class="col-md-1">
+					</colgroup>
+					<thead>
 						<tr>
-							<td colspan="3" class="text-center">Você não tem nenhuma tarefa ainda.</td>
+							<th></th>
+							<th>Descrição</th>
+							<th>Remover</th>
 						</tr>
-					</c:if>
-					<c:forEach items="${listaTarefas.tarefas}" var="tarefa">
+					</thead>
+					<tbody>
+						<c:if test="${empty tarefasNaoFinalizadas }">
+							<tr>
+								<td colspan="3" class="text-center">Você não tem nenhuma tarefa ainda.</td>
+							</tr>
+						</c:if>
+						<c:forEach items="${tarefasNaoFinalizadas}" var="tarefa">
+							<tr>
+								<td>
+									<form:form action="${s:mvcUrl('TC#finalizar').arg(0, tarefa.id).build() }"
+										method="post">
+										<div class="text-center">
+											<label>
+												<input type="checkbox" value="" class="checkFinalizar"
+													<c:if test="${tarefa.concluida }">checked</c:if>>
+										    </label>
+										 </div>
+									</form:form>
+								</td>
+								<td>
+									<c:out value="${tarefa.descricao}"/>
+								</td>
+								<td>
+									<form:form action="${s:mvcUrl('TC#remover').arg(0, tarefa.id).build() }"
+										method="post" >
+										<div class="text-center">
+											<button type="submit" value="Remover" class="btn btn-warning btn-sm">
+												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											</button>
+										</div>
+									</form:form>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<!-- NAO FINALIZADAS -->
+			
+			<!-- FINALIZADAS -->
+			<div role="tabpanel" class="tab-pane fade" id="finalizadas">
+				<table class="table table-bordered table-striped">
+					<colgroup>
+						<col class="col-md-1">
+						<col class="col-md-7">
+						<col class="col-md-1">
+					</colgroup>
+					<thead>
 						<tr>
-							<td>
-								<form:form action="${s:mvcUrl('TC#finalizar').arg(0, tarefa.id).build() }"
-									method="post">
-									<div class="text-center">
-										<label>
-											<input type="checkbox" value="" class="checkFinalizar"
-												<c:if test="${tarefa.concluida }">checked</c:if>>
-									    </label>
-									 </div>
-								</form:form>
-							</td>
-							<td>
-								<c:out value="${tarefa.descricao}"/>
-							</td>
-							<td>
-								<form:form action="${s:mvcUrl('TC#remover').arg(0, tarefa.id).build() }"
-									method="post" >
-									<div class="text-center">
-										<button type="submit" value="Remover" class="btn btn-warning btn-sm">
-											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										</button>
-									</div>
-								</form:form>
-							</td>
+							<th></th>
+							<th>Descrição</th>
+							<th>Remover</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:if test="${empty tarefasFinalizadas }">
+							<tr>
+								<td colspan="3" class="text-center">Você não tem nenhuma tarefa ainda.</td>
+							</tr>
+						</c:if>
+						<c:forEach items="${tarefasFinalizadas}" var="tarefa">
+							<tr>
+								<td>
+									<form:form action="${s:mvcUrl('TC#finalizar').arg(0, tarefa.id).build() }"
+										method="post">
+										<div class="text-center">
+											<label>
+												<input type="checkbox" value="" class="checkFinalizar"
+													<c:if test="${tarefa.concluida }">checked</c:if>>
+										    </label>
+										 </div>
+									</form:form>
+								</td>
+								<td>
+									<c:out value="${tarefa.descricao}"/>
+								</td>
+								<td>
+									<form:form action="${s:mvcUrl('TC#remover').arg(0, tarefa.id).build() }"
+										method="post" >
+										<div class="text-center">
+											<button type="submit" value="Remover" class="btn btn-warning btn-sm">
+												<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											</button>
+										</div>
+									</form:form>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<!-- FINALIZADAS -->
+			
 		</div>
 		
 	</div>

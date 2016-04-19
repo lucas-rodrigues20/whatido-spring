@@ -42,7 +42,10 @@
 			
 			<div class="form-group">
 				<label>Nova Lista</label>
-				<form:input path="descricao" cssClass="form-control" placeholder="Descrição da Lista" />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-list fa-fw" aria-hidden="true"></i></span>
+					<form:input path="descricao" cssClass="form-control" placeholder="Descrição da Lista" />
+				</div>
 				<div class="text-right">
 					<form:errors path="descricao" cssClass="erro-embutido" />
 				</div>

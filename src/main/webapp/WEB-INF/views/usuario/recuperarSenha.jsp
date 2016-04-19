@@ -44,7 +44,10 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Email Cadastrado</label>
 				<div class="col-sm-10">
-					<form:input path="email" cssClass="form-control" placeholder="email@exemplo.com" />
+					<div class="input-group margin-bottom-sm">
+						<span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+						<form:input path="email" cssClass="form-control" placeholder="email@exemplo.com" />
+					</div>
 					<div class="text-right">
 						<form:errors path="email" cssClass="erro-embutido" />
 					</div>

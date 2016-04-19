@@ -44,7 +44,10 @@
 			
 			<div class="form-group">
 				<label>Nova Tarefa</label>
-				<form:input path="descricao" cssClass="form-control" placeholder="Descrição da Tarefa" />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-thumb-tack fa-fw" aria-hidden="true"></i></span>
+					<form:input path="descricao" cssClass="form-control" placeholder="Descrição da Tarefa" />
+				</div>
 				<div class="text-right">
 					<form:errors path="descricao" cssClass="erro-embutido" />
 				</div>
@@ -77,7 +80,7 @@
 									method="post">
 							<button type="submit" value="Remover" class="btn btn-primary btn-sm"
 								<c:if test="${empty tarefasNaoFinalizadas }">disabled</c:if>>
-								Sortear uma tarefa
+								<i class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i> Sortear Uma Tarefa
 							</button>
 						</form:form>
 			    	</div>

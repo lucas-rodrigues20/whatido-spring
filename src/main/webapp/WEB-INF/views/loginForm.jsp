@@ -23,18 +23,26 @@
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
+					<span class="fa fa-exclamation-triangle" aria-hidden="true"></span>
+					<span class="sr-only">Error:</span>
 					Email ou Senha Inválido
 				</div>
 			</c:if>
 			
 			<div class="form-group">
 				<label>Email</label>
-				<input type="email" name="username" class="form-control" placeholder="Email" required />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+					<input type="email" name="username" class="form-control" placeholder="Email" required />
+				</div>
 			</div>
 			
 			<div class="form-group">
 				<label>Senha</label>
-				<input type="password" name="password" class="form-control" placeholder="Senha" required />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+					<input type="password" name="password" class="form-control" placeholder="Senha" required />
+				</div>
 			</div>
 			
 			<div class="text-right">

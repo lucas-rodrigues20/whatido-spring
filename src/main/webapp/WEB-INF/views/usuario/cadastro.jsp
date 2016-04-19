@@ -42,7 +42,10 @@
 			
 			<div class="form-group">
 				<label>Nome</label>
-				<form:input path="nome" cssClass="form-control" placeholder="Seu nome" />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+					<form:input path="nome" cssClass="form-control" placeholder="Seu nome" />
+				</div>
 				<div class="text-right">
 					<form:errors path="nome" cssClass="erro-embutido" />
 				</div>
@@ -50,7 +53,10 @@
 			
 			<div class="form-group">
 				<label>Email</label>
-				<form:input path="email" cssClass="form-control" placeholder="email@exemplo.com" />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+					<form:input path="email" cssClass="form-control" placeholder="email@exemplo.com" />
+				</div>	
 				<div class="text-right">
 					<form:errors path="email" cssClass="erro-embutido" />
 				</div>
@@ -58,7 +64,10 @@
 			
 			<div class="form-group">
 				<label>Senha</label>
-				<form:password path="senha" cssClass="form-control" placeholder="Insira uma senha" />
+				<div class="input-group margin-bottom-sm">
+					<span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+					<form:password path="senha" cssClass="form-control" placeholder="Insira uma senha" />
+				</div>
 				<div class="text-right">
 					<form:errors path="senha" cssClass="erro-embutido" />
 				</div>

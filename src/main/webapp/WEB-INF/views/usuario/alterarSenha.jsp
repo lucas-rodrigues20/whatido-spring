@@ -44,7 +44,10 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Senha Atual</label>
 				<div class="col-sm-10">
-					<form:password path="senhaAtual" cssClass="form-control" placeholder="Senha Atual" />
+					<div class="input-group margin-bottom-sm">
+						<span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+						<form:password path="senhaAtual" cssClass="form-control" placeholder="Senha Atual" />
+					</div>
 					<div class="text-right">
 						<form:errors path="senhaAtual" cssClass="erro-embutido" />
 					</div>
@@ -54,7 +57,10 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Nova Senha</label>
 				<div class="col-sm-10">
-					<form:password path="novaSenha" cssClass="form-control" placeholder="Nova Senha" />
+					<div class="input-group margin-bottom-sm">
+						<span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+						<form:password path="novaSenha" cssClass="form-control" placeholder="Nova Senha" />
+					</div>
 					<div class="text-right">
 						<form:errors path="novaSenha" cssClass="erro-embutido" />
 					</div>

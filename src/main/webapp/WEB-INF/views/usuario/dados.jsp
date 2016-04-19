@@ -44,14 +44,18 @@
 			<form:hidden path="email" />
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Email</label>
+				<label class="col-sm-2 control-label">
+					<i class="fa fa-envelope fa-fw" aria-hidden="true"></i> Email
+				</label>
 				<div class="col-sm-10">
 					<p class="form-control-static">${usuario.email }</p>
 				</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Nome</label>
+				<label class="col-sm-2 control-label">
+					<i class="fa fa-user fa-fw" aria-hidden="true"></i> Nome
+				</label>
 				<div class="col-sm-10">
 					<form:input path="nome" cssClass="form-control" placeholder="Seu nome" />
 					<div class="text-right">

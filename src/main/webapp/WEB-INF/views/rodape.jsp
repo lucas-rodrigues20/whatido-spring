@@ -11,7 +11,7 @@
                 		<a href="${s:mvcUrl('MCC#form').build() }">Contato</a>
                 	</li>
                 	<li>
-                		<a href="#">Sobre</a>
+                		<a href="#" style="display: none;">Sobre</a>
                 	</li>
                 </ul>
                 <br>
